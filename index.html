@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="site.css">
+
+    <title>Jacks Are Better</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row text-center">
+            <div id="playerAccount" class="col-md-12">
+                <h1>Player Account</h1>
+                <div id="playerBankDiv" class="bg-success jumbotron align-middle">
+                    <p>Play starts with $<span id="playerBankSpan">1000</span></p>
+                    <p><span id="showHandName">Are you feeling lucky?</span></p>
+                </div>
+            </div>
+
+
+            <div id="betInput" class="col-md-12">
+                <h1>Bet Input</h1>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input id="playerBetInput" type="number" class="form-control" value="0">
+                </div>
+
+
+                <div class="col-md-12">
+                    <button id="deal" disabled class="btn btn-warning btn-new">
+                        <h1>Deal</h1>
+                    </button>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Player Hand</h1>
+                    <div id="playerHandDiv" class="cardBacks">
+                        <img id="playerCard1" src="img/back.png" style="width:auto;height:250px;">
+                        <img id="playerCard2" src="img/back.png" style="width:auto;height:250px;">
+                        <img id="playerCard3" src="img/back.png" style="width:auto;height:250px;">
+                        <img id="playerCard4" src="img/back.png" style="width:auto;height:250px;">
+                        <img id="playerCard5" src="img/back.png" style="width:auto;height:250px;">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <!--
+    End Container Div
+-->
+    <script>
+   
+//a messy way of removing the disabled attribute from the deal button 
+        
+
+    </script>
+    <script src="card.js"></script>
+    <script src="hand.js"></script>
+    <script src="deck.js"></script>
+    <script src="player.js"></script>
+    <script src="game.js"></script>
+    <script>
+
+var game = new Game();
+game.play();
+
+    </script>
+</body>
+
+</html>
