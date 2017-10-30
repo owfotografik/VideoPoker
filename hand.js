@@ -4,16 +4,13 @@ var Hand = (function () {
 
     //var playerCards = document.getElementById('playerHand');
     function Hand(cards) {
-
         //bring in an array of cards and loop throug
         this.cards = cards || [];
     }
-
     //prototype function to add cards to the hand
     Hand.prototype.addCards = function (cards) {
         this.cards = this.cards.concat(cards);
     };
-
     ///prototype function to remove card from Hand
     Hand.prototype.deleteCards = function (names) {
 
@@ -24,6 +21,9 @@ var Hand = (function () {
 
     //get best hand function
     Hand.prototype.getBestHand = function () {
+        var groups = getGroups(this.cards);
+       
+
         if (isRoyalFlush) {
             return {
                 name: "Royal Flush",
@@ -84,15 +84,43 @@ var Hand = (function () {
                 multiplier: 0
             }
         }
-
-
-
-        //console.log(isFlush(this.cards));
-        var groups = getGroups(this.cards);
-
         return bestHand;
-
     };
+
+    function isRoyalFlush(isFlush, groups) {
+        ///console.log(cards[0].suit);
+        if (isFlush && "only have 10-A") {
+
+        }
+
+    }
+
+    function isStraightFlush(cards, groups) {
+        ///console.log(cards[0].suit);
+        if (isFlush && "cards are in sequential order") {
+
+        }
+    }
+
+    function isFourOfaKind(groups) {
+        ///console.log(cards[0].suit);
+        var names = Object.getOwnPropertyNames(groups);
+        if (names.length === 2) {
+            return names.some(function (name) {
+                return cardGroups[name] === 1;
+            });
+        };
+    }
+
+    function isFullHouse(cards, groups) {
+        ///console.log(cards[0].suit);
+        var names = Object.getOwnPropertyNames(groups);
+        if (names.length === 2) {
+            return names.some(function (name) {
+                return cardGroups[name] === 2;
+            });
+        };
+    }
 
     function isFlush(cards) {
         ///console.log(cards[0].suit);
@@ -104,36 +132,68 @@ var Hand = (function () {
 
     }
 
-    function isTwoOfAKind(cardGroups) {
+    function isStraight(cards) {
+        ///console.log(cards[0].suit);
+        "cards are in sequential order"
+        var m = 0; // counter for loop.
+        var current_num;
+        var next_num;
+        var result = a;
+        var test;
+        if (a !== undefined) {
+            if (a.constructor === Array) { // check if input a is array object.
+                result = true;
+                while (m < a.length) { // loop through array elements.
+                    current_num = a[m];
+                    next_num = a[m + 1];
+                    if (typeof current_num === "number" &&
+                            typeof next_num === "number") {
+                        if (b === 1) {
+                            test = current_num <= next_num; // descending.
+                        } else {
+                            test = current_num >= next_num; // ascending.
+                        }
+                        if (test) { // found unordered/same elements.
+                            result = false;
+                            break;
+                        }
+                    }
+                    m += 1;
+                }
+            }
+        }
+        return result;
+    }
 
-        var names = Object.getOwnPropertyNames(cardGroups);
-        if (names.length === 2) {
+    function isThreeOfAKind(groups) {
+
+        var names = Object.getOwnPropertyNames(groups);
+        if (names.length === 3) {
+            return names.some(function (name) {
+                return cardGroups[name] === 1;
+            });
+        };
+    };
+
+    function isTwoOfAKind(groups) {
+
+        var names = Object.getOwnPropertyNames(groups);
+        if (names.length === 3) {
             return names.some(function (name) {
                 return cardGroups[name] === 2;
             });
         };
     };
 
-
-
     function IsJacksorBetter(cards, groups) {
         var names = Object.getOwnPropertyNames(groups)
         if (names.length === 4) {
             names.some(function (name) {
-                return groups[name] === 2
+                return groups[name] === 1
             })
         }
     }
 
-    function isThreeOfAKind(cardGroups) {
-
-        var names = Object.getOwnPropertyNames(cardGroups);
-        if (names.length === 3) {
-            return names.some(function (name) {
-                return cardGroups[name] === 3;
-            });
-        };
-    };
 
 
     function getGroups(cards) {

@@ -9,18 +9,23 @@ var Game = (function () {
 		this.hand = new Hand();
 		this.newHand = true;
 		this.cardImages = [];
-		this.playerBet = 0;
+		//this.playerBet = 0;
+		
 
 	}
 
+	var dealButton = document.getElementById("deal");
+	var playAgainButton = document.getElementById("playAgain");
+	var playerBetInputField = document.getElementById('playerBetInput');
+	var playerHandDiv = document.getElementById('playerHandDiv');
+
 	Game.prototype.play = function () {
+	
 
 		var self = this;
-
-		var dealButton = document.getElementById("deal");
 		
 //removes the disabled class on the deal button
-		document.getElementById('playerBetInput').addEventListener('click', function (event) {
+		playerBetInputField.addEventListener('click', function (event) {
 			dealButton.removeAttribute("disabled");
 
 		})
@@ -47,9 +52,23 @@ var Game = (function () {
 			self.hold(event.target)
 		})
 
-
 		dealButton.addEventListener('click', function () {
 			self.deal();
+			playerHandDiv.classList.remove("hidden");
+		})
+		playAgainButton.addEventListener('click', function () {
+			//self.deal();
+			playAgainButton.classList.add("hidden");
+			playerBetInputField.removeAttribute("disabled");
+			dealButton.classList.remove("hidden");
+			self.cardImages[0].classList.remove("hold");
+			self.cardImages[1].classList.remove("hold");
+			self.cardImages[2].classList.remove("hold");
+			self.cardImages[3].classList.remove("hold");
+			self.cardImages[4].classList.remove("hold");
+			//remove cards from table
+			playerHandDiv.classList.add("hidden");
+			
 		})
 
 	}
@@ -63,7 +82,7 @@ var Game = (function () {
 		var self = this;
 
 		if (this.newHand) {
-
+			
 			this.player.updateAccount(-this.playerBet);
 
 			playerBank.innerHTML = this.player.account;
@@ -76,13 +95,11 @@ var Game = (function () {
 			showCardOnTable(this.cardImages[3], cards[3]);
 			showCardOnTable(this.cardImages[4], cards[4]);
 
-			this.hand = new Hand(cards);
 			this.newHand = false;
-			console.log(this.newHand);
+			playerBetInputField.setAttribute("disabled", true);
+			//console.log(this.newHand);
 		}
 		else {
-
-			
 			var removeCards = document.querySelectorAll("img:not(.hold)")
 			//console.log(removeCards);
 			var newCards = this.deck.deal(removeCards.length);
@@ -105,10 +122,15 @@ var Game = (function () {
 			playerBank.innerHTML = this.player.account;
 			showHandName.innerHTML = bestHand.name;
 
-			
-			//sets newHand to true again
+			dealButton.classList.add("hidden");
+			playAgainButton.classList.remove("hidden");
+			playerBetInputField.value = "0";
+			console.log(playerBetInputField);
 			this.newHand = true;
-			console.log(this.newHand);
+		
+			//console.log(this.newHand);
+			//clear the cards on the table
+			
 
 		}
 	}
