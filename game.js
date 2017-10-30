@@ -67,7 +67,9 @@ var Game = (function () {
 			self.cardImages[3].classList.remove("hold");
 			self.cardImages[4].classList.remove("hold");
 			//remove cards from table
+			document.getElementById("showHandName").innerHTML = "Are You Feeling Lucky?";
 			playerHandDiv.classList.add("hidden");
+			
 			
 		})
 
