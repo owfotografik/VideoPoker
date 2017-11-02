@@ -40,7 +40,7 @@ var Deck = (function () {
     /////deal function - anone who calls deal will get a card
     Deck.prototype.deal = function (howMany) {
         //this will set a default value on a paramater - if howMany is undefined, this code will set to 1
-        howMany = howMany || 1;
+        howMany = howMany || 0;
 
         var newCards = this.cards.splice(0, howMany);
 

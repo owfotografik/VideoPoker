@@ -10,8 +10,6 @@ var Game = (function () {
 		this.newHand = true;
 		this.cardImages = [];
 		//this.playerBet = 0;
-		
-
 	}
 
 	var dealButton = document.getElementById("deal");
@@ -20,8 +18,6 @@ var Game = (function () {
 	var playerHandDiv = document.getElementById('playerHandDiv');
 
 	Game.prototype.play = function () {
-	
-
 		var self = this;
 		
 //removes the disabled class on the deal button
@@ -86,10 +82,10 @@ var Game = (function () {
 		if (this.newHand) {
 			
 			this.player.updateAccount(-this.playerBet);
-
 			playerBank.innerHTML = this.player.account;
-
+			//var cards = [new Card('KC'), new Card('AS'), new Card('KD'), new Card('KH'), new Card('5D')];
 			var cards = this.deck.deal(5);
+			this.hand = new Hand(cards);
 			//console.log(cards);
 			showCardOnTable(this.cardImages[0], cards[0]);
 			showCardOnTable(this.cardImages[1], cards[1]);
@@ -118,7 +114,15 @@ var Game = (function () {
 			this.hand.addCards(newCards);
 			//console.log(this.hand);
 			var bestHand = this.hand.getBestHand();
-			var winnings = this.playerBet * bestHand.multiplier + this.playerBet;
+			//if statement is to check if we need to give the player their bet back or not. If multiplier is greater than 0 then give them back
+			if (bestHand.multiplier > 0){
+				var winnings = this.playerBet * bestHand.multiplier + this.playerBet;
+				//return winnings;
+			}
+			else {
+				var winnings = 0;
+			}
+			
 
 			this.player.updateAccount(winnings);
 			playerBank.innerHTML = this.player.account;
@@ -127,7 +131,7 @@ var Game = (function () {
 			dealButton.classList.add("hidden");
 			playAgainButton.classList.remove("hidden");
 			playerBetInputField.value = "0";
-			console.log(playerBetInputField);
+			//console.log(playerBetInputField);
 			this.newHand = true;
 		
 			//console.log(this.newHand);

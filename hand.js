@@ -4,8 +4,12 @@ var Hand = (function () {
 
     //var playerCards = document.getElementById('playerHand');
     function Hand(cards) {
+
         //bring in an array of cards and loop throug
         this.cards = cards || [];
+        this.cards.sort(cardSort);
+        //console.log(this.cards);
+
     }
     //prototype function to add cards to the hand
     Hand.prototype.addCards = function (cards) {
@@ -22,57 +26,61 @@ var Hand = (function () {
     //get best hand function
     Hand.prototype.getBestHand = function () {
         var groups = getGroups(this.cards);
-       
 
-        if (isRoyalFlush) {
-            return {
-                name: "Royal Flush",
-                multiplier: 250
-            }
-        }
-        else if (isStraightFlush) {
-            return {
-                name: "Straight Flush",
-                multiplier: 50
-            }
-        }
-        else if (isFourOfaKind) {
-            return {
-                name: "4 of a Kind",
-                multiplier: 40
-            }
-        }
-        else if (isFullHouse) {
-            return {
-                name: "Full House",
-                multiplier: 10
-            }
-        }
-        else if (isFlush) {
-            return {
-                name: "Flush",
-                multiplier: 7
-            }
-        }
-        else if (isStraight) {
-            return {
-                name: "Straight",
-                multiplier: 5
-            }
-        }
-        else if (isThreeOfAKind) {
+
+        if (isThreeOfAKind(groups, this.cards)) {
             return {
                 name: "Three Of A Kind",
                 multiplier: 3
             }
         }
-        else if (isTwoPairs) {
+        else if (isFourOfAKind(groups, this.cards)) {
+            return {
+                name: "4 of a Kind",
+                multiplier: 40
+            }
+        }
+        else if (isFullHouse(groups, this.cards)) {
+            return {
+                name: "Full House",
+                multiplier: 10
+            }
+        }
+
+        else if (isTwoPairs(groups, this.cards)) {
             return {
                 name: "Two Pairs",
                 multiplier: 2
             }
         }
-        else if (isOnePairJacksOrBetter) {
+
+        else if (isRoyalFlush(groups, this.cards)) {
+            return {
+                name: "Royal Flush",
+                multiplier: 250
+            }
+        }
+        else if (isStraightFlush(groups, this.cards)) {
+            return {
+                name: "Straight Flush",
+                multiplier: 50
+            }
+        }
+        else if (isFlush(groups, this.cards)) {
+            return {
+                name: "Flush",
+                multiplier: 7
+            }
+        }
+
+        else if (isStraight(groups, this.cards)) {
+            return {
+                name: "Straight",
+                multiplier: 5
+            }
+        }
+
+        else if (isOnePairJacksOrBetter(groups, this.cards)) {
             return {
                 name: "1 Pair Jacks or Better",
                 multiplier: 1
@@ -80,49 +88,87 @@ var Hand = (function () {
         }
         else {
             return {
-                name: "Nada",
+                name: "High Card",
                 multiplier: 0
             }
         }
         return bestHand;
     };
 
-    function isRoyalFlush(isFlush, groups) {
-        ///console.log(cards[0].suit);
-        if (isFlush && "only have 10-A") {
-
-        }
-
-    }
 
     function isStraightFlush(cards, groups) {
         ///console.log(cards[0].suit);
-        if (isFlush && "cards are in sequential order") {
-
+        if (isFlush(groups, cards)) {
+            {
+                if (cards[4].value === 14) {
+                    if (cards[0].value === 2 && cards[3].value === 5) return true;
+                    return false
+                }
+                return cards[4].value - cards[0].value === 4;
+            }
+        }
+    }
+    function isRoyalFlush(groups, cards) {
+        ///console.log(cards[0].suit);
+        if (isFlush(groups, cards)) {
+            if (cards[0].value === 10 && cards[4].value === 14) return true;
         }
     }
 
-    function isFourOfaKind(groups) {
+    function isStraight(groups, cards) {
         ///console.log(cards[0].suit);
+        //"cards are in sequential order"
         var names = Object.getOwnPropertyNames(groups);
-        if (names.length === 2) {
+
+        if (names.length === 5) {
+            if (cards[4].value === 14) {
+                if (cards[0].value === 10) return true;
+                if (cards[0].value === 2 && cards[3].value === 5) return true;
+                return false
+            }
+            return cards[4].value - cards[0].value === 4;
+        }
+
+    }
+
+    function isTwoPairs(groups, cards) {
+        var names = Object.getOwnPropertyNames(groups);
+        if (names.length === 3) {
             return names.some(function (name) {
-                return cardGroups[name] === 1;
+                return groups[name] === 2;
             });
         };
     }
 
-    function isFullHouse(cards, groups) {
+    function isFullHouse(groups, cards) {
         ///console.log(cards[0].suit);
         var names = Object.getOwnPropertyNames(groups);
         if (names.length === 2) {
             return names.some(function (name) {
-                return cardGroups[name] === 2;
+                return groups[name] === 3;
             });
         };
     }
 
-    function isFlush(cards) {
+    function isFourOfAKind(groups, cards) {
+        var names = Object.getOwnPropertyNames(groups);
+        if (names.length === 2) {
+            return names.some(function (names) {
+                return groups[names] === 4;
+            });
+        };
+    };
+
+    function isThreeOfAKind(groups, cards) {
+        var names = Object.getOwnPropertyNames(groups);
+        if (names.length === 3) {
+            return names.some(function (names) {
+                return groups[names] === 3;
+            });
+        };
+    };
+
+    function isFlush(groups, cards) {
         ///console.log(cards[0].suit);
         return cards.length === 5 &&
             cards[0].suit === cards[1].suit &&
@@ -132,68 +178,28 @@ var Hand = (function () {
 
     }
 
-    function isStraight(cards) {
-        ///console.log(cards[0].suit);
-        "cards are in sequential order"
-        var m = 0; // counter for loop.
-        var current_num;
-        var next_num;
-        var result = a;
-        var test;
-        if (a !== undefined) {
-            if (a.constructor === Array) { // check if input a is array object.
-                result = true;
-                while (m < a.length) { // loop through array elements.
-                    current_num = a[m];
-                    next_num = a[m + 1];
-                    if (typeof current_num === "number" &&
-                            typeof next_num === "number") {
-                        if (b === 1) {
-                            test = current_num <= next_num; // descending.
-                        } else {
-                            test = current_num >= next_num; // ascending.
-                        }
-                        if (test) { // found unordered/same elements.
-                            result = false;
-                            break;
-                        }
-                    }
-                    m += 1;
-                }
-            }
-        }
-        return result;
-    }
-
-    function isThreeOfAKind(groups) {
-
-        var names = Object.getOwnPropertyNames(groups);
-        if (names.length === 3) {
-            return names.some(function (name) {
-                return cardGroups[name] === 1;
-            });
-        };
-    };
-
-    function isTwoOfAKind(groups) {
-
-        var names = Object.getOwnPropertyNames(groups);
-        if (names.length === 3) {
-            return names.some(function (name) {
-                return cardGroups[name] === 2;
-            });
-        };
-    };
-
-    function IsJacksorBetter(cards, groups) {
+    function isOnePairJacksOrBetter(groups, cards) {
         var names = Object.getOwnPropertyNames(groups)
         if (names.length === 4) {
-            names.some(function (name) {
-                return groups[name] === 1
+            return names.some(function (name) {
+                return groups[name] === 2 && '11, 12, 13, 14'.includes(name); 
+                console.log(name);
             })
         }
     }
 
+    //function isOnePair(groups, cards) {
+        //var names = Object.getOwnPropertyNames(groups)
+        //if (names.length === 4) {
+            //names.some(function (name) {
+                //return groups[name] === 2; 
+           // })
+        //}
+    //}
+
+    function cardSort(cardA, cardB) {
+        return cardA.value - cardB.value;
+    }
 
 
     function getGroups(cards) {
@@ -203,6 +209,7 @@ var Hand = (function () {
 
         var propertyName = " ";
 
+        //removed cards.forEach
         cards.forEach(function (card) {
 
             propertyName = card.value;

@@ -90,7 +90,7 @@
 
     /////////- 2 Pairs - 2:1 -is a poker hand containing two cards of the same rank, two cards of another rank and one card of a third rank 
 
-    var threeOfaKind = new Deck(true);
+    var twoPair = new Deck(true);
 
     var hand = new Hand([
         new Card('JH'),
@@ -102,7 +102,7 @@
 
   /////////- 1 Pair Jacks or Better - 1:1 - or simply a pair, is a poker hand containing two cards of the same rank and three cards of three other ranks
 
-  var threeOfaKind = new Deck(true);
+  var onePairJacksorBetter = new Deck(true);
   
       var hand = new Hand([
           new Card('JH'),
