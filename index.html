@@ -14,51 +14,62 @@
 
 <body>
     <div class="container">
-        <div class="row text-center">
-            <div id="playerAccount" class="col-md-12">
-                <h1>Player Account</h1>
-                <div id="playerBankDiv" class="bg-success jumbotron align-middle">
-                    <p>Play starts with $<span id="playerBankSpan">1000</span></p>
-                    <p><span id="showHandName">Are you feeling lucky?</span></p>
-                </div>
+        <div id="betBank" class="row text-center">
+            <div class="col-md-12">
+                <h1>Video Poker : Jacks or Better</h1>
             </div>
-
-
-            <div id="betInput" class="col-md-12">
-                <h1>Bet Input</h1>
-                <form>
-                <div class="input-group">
-                    <span class="input-group-addon">$</span>
-                    <input id="playerBetInput" type="number" class="form-control" value="0">
-                </form>
+            <div class="row text-center">
+                <div class="col-md-1"></div>
+                <div id="playerAccount" class="col-md-3">
+                    <h4>Player Bank Balance</h4>
                 </div>
 
+                <div id="playerBankDiv" class="col-md-1">
+                      <h4>  $<span id="playerBankSpan">1000</span></h4>
+                    </div>
 
-                <div class="col-md-12">
-                    <button id="deal" disabled class="btn btn-warning btn-new">
-                        <h1>Deal</h1>
-                    </button>
-                    <button id="hit" class="btn btn-warning btn-new hidden">Hit</button>
-                    <button id="playAgain" class="btn btn-warning btn-new hidden">Play Again</button>
+                <div id="betInput" class="col-md-3">
+                    <h4>Place A Bet To Start Playing</h4>
                 </div>
 
+                <div id="betInput" class="col-md-3">
+                    <form>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input id="playerBetInput" type="number" class="form-control" value="0">
+                    </form>
+                    </div>
 
+                </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <h1>Player Hand</h1>
-                    <div id="playerHandDiv">
-                        <img id="playerCard1" src="img/back.png" class="cardBacks">
-                        <img id="playerCard2" src="img/back.png" class="cardBacks">
-                        <img id="playerCard3" src="img/back.png" class="cardBacks">
-                        <img id="playerCard4" src="img/back.png" class="cardBacks">
-                        <img id="playerCard5" src="img/back.png" class="cardBacks">
-                    </div>
+                <br>
+                <div class="col-md-center" id="playerHandDiv">
+                    <img id="playerCard1" src="img/back.png" class="cardBacks">
+                    <img id="playerCard2" src="img/back.png" class="cardBacks">
+                    <img id="playerCard3" src="img/back.png" class="cardBacks">
+                    <img id="playerCard4" src="img/back.png" class="cardBacks">
+                    <img id="playerCard5" src="img/back.png" class="cardBacks">
                 </div>
 
-            </div>
-        </div>
 
+            </div>
+
+            <div class="col-md-12 text-center">
+                <button id="deal" disabled class="btn btn-warning btn-new">
+                    <h1>Deal</h1>
+                </button>
+                <button id="hit" class="btn btn-warning btn-new hidden">Hit</button>
+                <button id="playAgain" class="btn btn-warning btn-new hidden">Play Again</button>
+            </div>
+
+        </div>
+        <div class="col-md-12 text-center">
+            <h1>
+                <span id="showHandName">Which Hand Will Win?</span>
+            </h1>
+
+        </div>
 
 
     </div>
@@ -66,9 +77,9 @@
     End Container Div
 -->
     <script>
-   
+
 //a messy way of removing the disabled attribute from the deal button 
-        
+
 
     </script>
     <script src="card.js"></script>
@@ -78,9 +89,9 @@
     <script src="game.js"></script>
     <script>
 
-var game = new Game();
-game.play();
-console.log(game);
+        var game = new Game();
+        game.play();
+        console.log(game);
 
     </script>
 </body>

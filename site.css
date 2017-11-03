@@ -16,7 +16,7 @@ body {
 }
 
 .row {
- padding: 3%;
+ padding: 1%;
 }
 .cardBacks {
   width: auto;
@@ -27,4 +27,18 @@ body {
   height: 60;
   font-size: 35px;
   margin: 5%;
+}
+
+#betBank {
+  background-color:rgb(84, 7, 7);
+}
+
+body {
+  background: url("bjbg.png");
+}
+h1 {
+  color: white;
+}
+h4 {
+  color: white;
 }
