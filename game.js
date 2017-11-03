@@ -23,8 +23,8 @@ var Game = (function () {
 
 	Game.prototype.play = function () {
 		var self = this;
-		
-//removes the disabled class on the deal button
+
+		//removes the disabled class on the deal button
 		playerBetInputField.addEventListener('click', function (event) {
 			//pretty sure I don't need this if statement - remove it later and test
 			if (self.player.account >= playerBetInputField.value) {
@@ -68,7 +68,7 @@ var Game = (function () {
 		playAgainButton.addEventListener('click', function () {
 			//self.deal();
 			playAgainButton.classList.add("hidden");
-			
+
 			playerBetInputField.removeAttribute("disabled");
 			dealButton.classList.remove("hidden");
 			self.cardImages[0].classList.remove("hold");
@@ -96,17 +96,17 @@ var Game = (function () {
 		var self = this;
 
 		if (this.newHand) {
-			if (self.playerBet > this.player.account){
+			if (self.playerBet > this.player.account) {
 				playerBetInputField.value = 0;
 				return alert("Try Again With A Lower Bet")
 			}
-			else if(self.playerBet === 0) {
+			else if (self.playerBet === 0) {
 				return alert("Try Again With An Actual Bet")
 			}
 			this.player.updateAccount(-this.playerBet);
 			playerBank.innerHTML = this.player.account;
-			var cards = [new Card('AC'), new Card('2C'), new Card('3C'), new Card('4C'), new Card('5C')];
-			//var cards = this.deck.deal(5);
+			//var cards = [new Card('AC'), new Card('KC'), new Card('QC'), new Card('JC'), new Card('10C')];
+			var cards = this.deck.deal(5);
 			this.hand = new Hand(cards);
 			//console.log(cards);
 			showCardOnTable(this.cardImages[0], cards[0]);
@@ -139,14 +139,14 @@ var Game = (function () {
 			//console.log(this.hand);
 			var bestHand = this.hand.getBestHand();
 			//if statement is to check if we need to give the player their bet back or not. If multiplier is greater than 0 then give them back
-			if (bestHand.multiplier > 0){
+			if (bestHand.multiplier > 0) {
 				var winnings = this.playerBet * bestHand.multiplier + this.playerBet;
 				//return winnings;
 			}
 			else {
 				var winnings = 0;
 			}
-			
+
 
 			this.player.updateAccount(winnings);
 			playerBank.innerHTML = this.player.account;
@@ -158,10 +158,10 @@ var Game = (function () {
 			playerBetInputField.value = "0";
 			//console.log(playerBetInputField);
 			this.newHand = true;
-		
+
 			//console.log(this.newHand);
 			//clear the cards on the table
-			
+
 
 		}
 	}
