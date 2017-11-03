@@ -14,6 +14,9 @@ var Game = (function () {
 	}
 
 	var dealButton = document.getElementById("deal");
+	//hit button hidden by default to start game
+	var hitButton = document.getElementById("hit");
+	//play again button hidden by default to start game
 	var playAgainButton = document.getElementById("playAgain");
 	var playerBetInputField = document.getElementById('playerBetInput');
 	var playerHandDiv = document.getElementById('playerHandDiv');
@@ -23,6 +26,7 @@ var Game = (function () {
 		
 //removes the disabled class on the deal button
 		playerBetInputField.addEventListener('click', function (event) {
+			//pretty sure I don't need this if statement - remove it later and test
 			if (self.player.account >= playerBetInputField.value) {
 				dealButton.removeAttribute("disabled");
 			}
@@ -53,11 +57,18 @@ var Game = (function () {
 
 		dealButton.addEventListener('click', function () {
 			self.deal();
-			playerHandDiv.classList.remove("hidden");
+			//pretty sure I don't need this code anymore
+			//playerHandDiv.classList.remove("hidden");
+		})
+		hitButton.addEventListener('click', function () {
+			self.deal();
+			//pretty sure I don't need this code anymore
+			//playerHandDiv.classList.remove("hidden");
 		})
 		playAgainButton.addEventListener('click', function () {
 			//self.deal();
 			playAgainButton.classList.add("hidden");
+			
 			playerBetInputField.removeAttribute("disabled");
 			dealButton.classList.remove("hidden");
 			self.cardImages[0].classList.remove("hold");
@@ -106,6 +117,8 @@ var Game = (function () {
 
 			this.newHand = false;
 			playerBetInputField.setAttribute("disabled", true);
+			hitButton.classList.remove("hidden");
+			dealButton.classList.add("hidden");
 			//console.log(this.newHand);
 		}
 		else {
@@ -140,6 +153,7 @@ var Game = (function () {
 			showHandName.innerHTML = bestHand.name;
 
 			dealButton.classList.add("hidden");
+			hitButton.classList.add("hidden");
 			playAgainButton.classList.remove("hidden");
 			playerBetInputField.value = "0";
 			//console.log(playerBetInputField);
