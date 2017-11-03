@@ -68,7 +68,8 @@ var Game = (function () {
 		playAgainButton.addEventListener('click', function () {
 			//self.deal();
 			playAgainButton.classList.add("hidden");
-
+			this.deck = new Deck(true);
+			console.log(this.deck);
 			playerBetInputField.removeAttribute("disabled");
 			dealButton.classList.remove("hidden");
 			self.cardImages[0].classList.remove("hold");
@@ -158,6 +159,7 @@ var Game = (function () {
 			playerBetInputField.value = "0";
 			//console.log(playerBetInputField);
 			this.newHand = true;
+			
 
 			//console.log(this.newHand);
 			//clear the cards on the table
