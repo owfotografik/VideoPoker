@@ -99,12 +99,11 @@ var Hand = (function () {
     function isStraightFlush(cards, groups) {
         ///console.log(cards[0].suit);
         if (isFlush(groups, cards)) {
+            if (isStraight(groups, cards)) {
+            }
+            return true;
             {
-                if (cards[4].value === 14) {
-                    if (cards[0].value === 2 && cards[3].value === 5) return true;
-                    return false
-                }
-                return cards[4].value - cards[0].value === 4;
+
             }
         }
     }
@@ -170,6 +169,9 @@ var Hand = (function () {
 
     function isFlush(groups, cards) {
         ///console.log(cards[0].suit);
+        if (!isStraight(groups, cards)) {
+        }
+        return true;
         return cards.length === 5 &&
             cards[0].suit === cards[1].suit &&
             cards[0].suit === cards[2].suit &&
@@ -182,21 +184,21 @@ var Hand = (function () {
         var names = Object.getOwnPropertyNames(groups)
         if (names.length === 4) {
             return names.some(function (name) {
-                
+
                 //console.log(groups[name] === 2, name > 10);
-                return (groups[name] === 2 && name > 10 ); 
-                
+                return (groups[name] === 2 && name > 10);
+
             })
         }
     }
 
     //function isOnePair(groups, cards) {
-        //var names = Object.getOwnPropertyNames(groups)
-        //if (names.length === 4) {
-            //names.some(function (name) {
-                //return groups[name] === 2; 
-           // })
-        //}
+    //var names = Object.getOwnPropertyNames(groups)
+    //if (names.length === 4) {
+    //names.some(function (name) {
+    //return groups[name] === 2; 
+    // })
+    //}
     //}
 
     function cardSort(cardA, cardB) {
@@ -225,7 +227,7 @@ var Hand = (function () {
                 groups[propertyName] = 1;
             }
 
-        });console.log(groups);
+        });//console.log(groups);
         return groups;
     }
 

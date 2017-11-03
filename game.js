@@ -105,8 +105,8 @@ var Game = (function () {
 			}
 			this.player.updateAccount(-this.playerBet);
 			playerBank.innerHTML = this.player.account;
-			//var cards = [new Card('KC'), new Card('4S'), new Card('2D'), new Card('4H'), new Card('5D')];
-			var cards = this.deck.deal(5);
+			var cards = [new Card('AC'), new Card('2C'), new Card('3C'), new Card('4C'), new Card('5C')];
+			//var cards = this.deck.deal(5);
 			this.hand = new Hand(cards);
 			//console.log(cards);
 			showCardOnTable(this.cardImages[0], cards[0]);
