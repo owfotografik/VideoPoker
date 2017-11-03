@@ -11,7 +11,7 @@ body {
 }
 
 .hold {
-  border: 3px solid green;
+  border: 3px solid rgb(250, 221, 6);
   border-radius: 5px;
 }
 
@@ -26,18 +26,23 @@ body {
 .btn-new {
   height: 60;
   font-size: 35px;
-  margin: 5%;
+  margin: 2%;
+  color: rgb(250, 221, 6);
 }
 
-#betBank {
-  background-color:rgb(84, 7, 7);
+.betBank {
+  background-color:rgb(3, 43, 20);
 }
 body {
   background: url("bjbg.png");
+  background-size: cover;
 }
 h1 {
-  color: white;
+  color: rgb(250, 221, 6);
 }
 h4 {
   color: white;
+}
+h2 {
+  color: rgb(3, 43, 20);
 }

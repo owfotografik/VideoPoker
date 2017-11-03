@@ -30,65 +30,65 @@ var Hand = (function () {
 
         if (isThreeOfAKind(groups, this.cards)) {
             return {
-                name: "Three Of A Kind",
+                name: "Three Of A Kind Wins",
                 multiplier: 3
             }
         }
         else if (isFourOfAKind(groups, this.cards)) {
             return {
-                name: "4 of a Kind",
+                name: "4 of a Kind Wins",
                 multiplier: 40
             }
         }
         else if (isFullHouse(groups, this.cards)) {
             return {
-                name: "Full House",
+                name: "Full House Wins",
                 multiplier: 10
             }
         }
 
         else if (isTwoPairs(groups, this.cards)) {
             return {
-                name: "Two Pairs",
+                name: "Two Pairs Wins",
                 multiplier: 2
             }
         }
 
         else if (isRoyalFlush(groups, this.cards)) {
             return {
-                name: "Royal Flush",
+                name: "Royal Flush Wins",
                 multiplier: 250
             }
         }
         else if (isStraightFlush(groups, this.cards)) {
             return {
-                name: "Straight Flush",
+                name: "Straight Flush Wins",
                 multiplier: 50
             }
         }
         else if (isFlush(groups, this.cards)) {
             return {
-                name: "Flush",
+                name: "Flush Wins",
                 multiplier: 7
             }
         }
 
         else if (isStraight(groups, this.cards)) {
             return {
-                name: "Straight",
+                name: "Straight Wins",
                 multiplier: 5
             }
         }
 
         else if (isOnePairJacksOrBetter(groups, this.cards)) {
             return {
-                name: "1 Pair Jacks or Better",
+                name: "1 Pair Jacks or Better Gets You Your Bet Back",
                 multiplier: 1
             }
         }
         else {
             return {
-                name: "High Card",
+                name: "High Card Doesn't Win Anything",
                 multiplier: 0
             }
         }

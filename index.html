@@ -12,27 +12,27 @@
     <title>Jacks Are Better</title>
 </head>
 
-<body>
+<body class="img-responsive width:100%">
     <div class="container">
-        <div id="betBank" class="row text-center">
+        <div class="row text-center">
             <div class="col-md-12">
                 <h1>Video Poker : Jacks or Better</h1>
             </div>
-            <div class="row text-center">
+            <div class="row text-center betBank">
                 <div class="col-md-1"></div>
-                <div id="playerAccount" class="col-md-3">
+                <div id="playerAccount" class="col-md-3 betBank">
                     <h4>Player Bank Balance</h4>
                 </div>
 
-                <div id="playerBankDiv" class="col-md-1">
+                <div id="playerBankDiv" class="col-md-1 betBank">
                       <h4>  $<span id="playerBankSpan">1000</span></h4>
                     </div>
 
-                <div id="betInput" class="col-md-3">
+                <div id="betInput" class="col-md-3 betBank">
                     <h4>Place A Bet To Start Playing</h4>
                 </div>
 
-                <div id="betInput" class="col-md-3">
+                <div id="betInput" class="col-md-3 betBank">
                     <form>
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
@@ -42,34 +42,36 @@
 
                 </div>
             </div>
+            
             <div class="row">
+                    <div class="col-md-12 text-center">
+                            <h1>
+                                <span id="showHandName">Are You Feeling Lucky?</span>
+                            </h1>
+                
+                        </div>
                 <br>
-                <div class="col-md-center" id="playerHandDiv">
+                <div class="col-md-12" id="playerHandDiv">
                     <img id="playerCard1" src="img/back.png" class="cardBacks">
                     <img id="playerCard2" src="img/back.png" class="cardBacks">
                     <img id="playerCard3" src="img/back.png" class="cardBacks">
                     <img id="playerCard4" src="img/back.png" class="cardBacks">
                     <img id="playerCard5" src="img/back.png" class="cardBacks">
                 </div>
-
+                <div class="col-md-12 text-center">
+                        <button id="deal" disabled class="btn btn-warning btn-new">
+                            <h2>Deal</h2>
+                        </button>
+                        <button id="hit" class="btn btn-warning btn-new hidden">Hit</button>
+                        <button id="playAgain" class="btn btn-warning btn-new hidden">Play Again</button>
+                    </div>
 
             </div>
 
-            <div class="col-md-12 text-center">
-                <button id="deal" disabled class="btn btn-warning btn-new">
-                    <h1>Deal</h1>
-                </button>
-                <button id="hit" class="btn btn-warning btn-new hidden">Hit</button>
-                <button id="playAgain" class="btn btn-warning btn-new hidden">Play Again</button>
-            </div>
+          
 
         </div>
-        <div class="col-md-12 text-center">
-            <h1>
-                <span id="showHandName">Which Hand Will Win?</span>
-            </h1>
-
-        </div>
+       
 
 
     </div>
