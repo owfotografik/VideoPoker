@@ -11,12 +11,21 @@ var Player = (function () {
 		this.account = balance || 0;
 		if (this.account === 0) {
 			this.account = loadFromLocalStorage();
+			if (this.account === 0) {
+				this.account = 1000;
+			}
 		}
 	}
 
 	//update account function
 	Player.prototype.updateAccount = function (amount) {
+		if (this.account === 0 && amount === 0) {
+			alert("You Are Out of Money, Start Over with $1,000");
+			this.account = 1000;
+		}
 		this.account += amount;
+	
+
 
 		saveToLocalStorage(this.account);
 

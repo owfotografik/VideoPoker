@@ -23,7 +23,9 @@ var Game = (function () {
 		
 //removes the disabled class on the deal button
 		playerBetInputField.addEventListener('click', function (event) {
-			dealButton.removeAttribute("disabled");
+			if (self.player.account >= playerBetInputField.value) {
+				dealButton.removeAttribute("disabled");
+			}
 
 		})
 
@@ -65,9 +67,11 @@ var Game = (function () {
 			self.cardImages[4].classList.remove("hold");
 			//remove cards from table
 			document.getElementById("showHandName").innerHTML = "Are You Feeling Lucky?";
-			playerHandDiv.classList.add("hidden");
-			
-			
+			self.cardImages[0].src = "img/back.png";
+			self.cardImages[1].src = "img/back.png";
+			self.cardImages[2].src = "img/back.png";
+			self.cardImages[3].src = "img/back.png";
+			self.cardImages[4].src = "img/back.png";
 		})
 
 	}
@@ -81,7 +85,13 @@ var Game = (function () {
 		var self = this;
 
 		if (this.newHand) {
-			
+			if (self.playerBet > this.player.account){
+				playerBetInputField.value = 0;
+				return alert("Try Again With A Lower Bet")
+			}
+			else if(self.playerBet === 0) {
+				return alert("Try Again With An Actual Bet")
+			}
 			this.player.updateAccount(-this.playerBet);
 			playerBank.innerHTML = this.player.account;
 			//var cards = [new Card('KC'), new Card('4S'), new Card('2D'), new Card('4H'), new Card('5D')];
