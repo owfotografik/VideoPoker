@@ -182,8 +182,10 @@ var Hand = (function () {
         var names = Object.getOwnPropertyNames(groups)
         if (names.length === 4) {
             return names.some(function (name) {
-                return groups[name] === 2 && '11, 12, 13, 14'.includes(name); 
-                console.log(name);
+                
+                //console.log(groups[name] === 2, name > 10);
+                return (groups[name] === 2 && name > 10 ); 
+                
             })
         }
     }
@@ -223,7 +225,7 @@ var Hand = (function () {
                 groups[propertyName] = 1;
             }
 
-        });
+        });console.log(groups);
         return groups;
     }
 

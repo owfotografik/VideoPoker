@@ -20,15 +20,15 @@ var Player = (function () {
 
 		saveToLocalStorage(this.account);
 
-		function loadFromLocalStorage() {
-			return parseInt(localStorage.getItem(LOCAL_STORAGE_KEY) || '0');
 
-		}
 		function saveToLocalStorage(account) {
 			localStorage.setItem(LOCAL_STORAGE_KEY, account);
 		}
 	};
+	function loadFromLocalStorage() {
+		return parseInt(localStorage.getItem(LOCAL_STORAGE_KEY) || '0');
 
+	}
 
 	return Player;
 

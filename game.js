@@ -4,7 +4,8 @@ var Game = (function () {
 
 	function Game() {
 
-		this.player = new Player(1000);
+		this.player = new Player(0);
+		document.getElementById("playerBankSpan").innerHTML = this.player.account;
 		this.deck = new Deck(true);
 		this.hand = new Hand();
 		this.newHand = true;
@@ -83,7 +84,7 @@ var Game = (function () {
 			
 			this.player.updateAccount(-this.playerBet);
 			playerBank.innerHTML = this.player.account;
-			//var cards = [new Card('KC'), new Card('AS'), new Card('KD'), new Card('KH'), new Card('5D')];
+			//var cards = [new Card('KC'), new Card('4S'), new Card('2D'), new Card('4H'), new Card('5D')];
 			var cards = this.deck.deal(5);
 			this.hand = new Hand(cards);
 			//console.log(cards);
