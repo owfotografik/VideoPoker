@@ -23,14 +23,9 @@ var Game = (function () {
 
 	Game.prototype.play = function () {
 		var self = this;
-
 		//removes the disabled class on the deal button
 		playerBetInputField.addEventListener('click', function (event) {
-			//pretty sure I don't need this if statement - remove it later and test
-			if (self.player.account >= playerBetInputField.value) {
-				dealButton.removeAttribute("disabled");
-			}
-
+			dealButton.removeAttribute("disabled");
 		})
 
 		this.cardImages[0] = document.getElementById('playerCard1');
@@ -57,19 +52,18 @@ var Game = (function () {
 
 		dealButton.addEventListener('click', function () {
 			self.deal();
-			//pretty sure I don't need this code anymore
-			//playerHandDiv.classList.remove("hidden");
+	
 		})
 		hitButton.addEventListener('click', function () {
 			self.deal();
-			//pretty sure I don't need this code anymore
-			//playerHandDiv.classList.remove("hidden");
+	
 		})
 		playAgainButton.addEventListener('click', function () {
 			//self.deal();
 			playAgainButton.classList.add("hidden");
-			this.deck = new Deck(true);
-			console.log(this.deck);
+			//.deck = new Deck(true);
+			
+		
 			playerBetInputField.removeAttribute("disabled");
 			dealButton.classList.remove("hidden");
 			self.cardImages[0].classList.remove("hold");
@@ -84,6 +78,20 @@ var Game = (function () {
 			self.cardImages[2].src = "img/back.png";
 			self.cardImages[3].src = "img/back.png";
 			self.cardImages[4].src = "img/back.png";
+
+			//var game = new Game();
+			//game.play();
+			//this.deck = new Deck(true);
+			//console.log(this.deck);
+			//this.cards = [];
+			//console.log(this.cards);
+
+			//don't know if I need this code?
+			//this.cardImages = [];
+			//console.log(this.cardImages);
+			//this.hand = new Hand();
+			//console.log(self.newHand);
+			//this.newHand = true;
 		})
 
 	}
@@ -108,7 +116,8 @@ var Game = (function () {
 			playerBank.innerHTML = this.player.account;
 			//var cards = [new Card('AC'), new Card('KC'), new Card('QC'), new Card('JC'), new Card('10C')];
 			var cards = this.deck.deal(5);
-			this.hand = new Hand(cards);
+			
+			console.log(cards);
 			//console.log(cards);
 			showCardOnTable(this.cardImages[0], cards[0]);
 			showCardOnTable(this.cardImages[1], cards[1]);
@@ -159,11 +168,8 @@ var Game = (function () {
 			playerBetInputField.value = "0";
 			//console.log(playerBetInputField);
 			this.newHand = true;
-			
-
+			this.hand = new Hand();
 			//console.log(this.newHand);
-			//clear the cards on the table
-
 
 		}
 	}
