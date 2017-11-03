@@ -101,7 +101,6 @@ var Hand = (function () {
         if (isFlush(groups, cards)) {
             if (isStraight(groups, cards)) {
             }
-            return true;
             {
             }
         }
@@ -169,13 +168,14 @@ var Hand = (function () {
     function isFlush(groups, cards) {
         ///console.log(cards[0].suit);
         if (!isStraight(groups, cards)) {
+            
+            return cards.length === 5 &&
+                cards[0].suit === cards[1].suit &&
+                cards[0].suit === cards[2].suit &&
+                cards[0].suit === cards[3].suit &&
+                cards[0].suit === cards[4].suit;
         }
         return true;
-        return cards.length === 5 &&
-            cards[0].suit === cards[1].suit &&
-            cards[0].suit === cards[2].suit &&
-            cards[0].suit === cards[3].suit &&
-            cards[0].suit === cards[4].suit;
 
     }
 
