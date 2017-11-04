@@ -59,11 +59,7 @@ var Game = (function () {
 	
 		})
 		playAgainButton.addEventListener('click', function () {
-			//self.deal();
 			playAgainButton.classList.add("hidden");
-			//.deck = new Deck(true);
-			
-		
 			playerBetInputField.removeAttribute("disabled");
 			dealButton.classList.remove("hidden");
 			self.cardImages[0].classList.remove("hold");
@@ -71,27 +67,14 @@ var Game = (function () {
 			self.cardImages[2].classList.remove("hold");
 			self.cardImages[3].classList.remove("hold");
 			self.cardImages[4].classList.remove("hold");
-			//remove cards from table
+			//show card backs
 			document.getElementById("showHandName").innerHTML = "Are You Feeling Lucky?";
 			self.cardImages[0].src = "img/back.png";
 			self.cardImages[1].src = "img/back.png";
 			self.cardImages[2].src = "img/back.png";
 			self.cardImages[3].src = "img/back.png";
 			self.cardImages[4].src = "img/back.png";
-
-			//var game = new Game();
-			//game.play();
-			//this.deck = new Deck(true);
-			//console.log(this.deck);
-			//this.cards = [];
-			//console.log(this.cards);
-
-			//don't know if I need this code?
-			//this.cardImages = [];
-			//console.log(this.cardImages);
-			//this.hand = new Hand();
-			//console.log(self.newHand);
-			//this.newHand = true;
+			
 		})
 
 	}
@@ -115,9 +98,10 @@ var Game = (function () {
 			this.player.updateAccount(-this.playerBet);
 			playerBank.innerHTML = this.player.account;
 			//var cards = [new Card('AC'), new Card('KC'), new Card('QC'), new Card('JC'), new Card('10C')];
+			this.hand = new Hand();
+			console.log("this.hand:", this.hand);
 			var cards = this.deck.deal(5);
-			
-			console.log(cards);
+			console.log("first new deal:", cards);
 			//console.log(cards);
 			showCardOnTable(this.cardImages[0], cards[0]);
 			showCardOnTable(this.cardImages[1], cards[1]);
@@ -168,8 +152,11 @@ var Game = (function () {
 			playerBetInputField.value = "0";
 			//console.log(playerBetInputField);
 			this.newHand = true;
-			this.hand = new Hand();
-			//console.log(this.newHand);
+			console.log("self.deck: ", this.deck);
+			this.hand = [];
+			console.log("self.hand: ", this.hand);
+			this.deck = new Deck(true);
+			console.log("self.deck: ", this.deck);
 
 		}
 	}
