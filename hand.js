@@ -14,6 +14,7 @@ var Hand = (function () {
     //prototype function to add cards to the hand
     Hand.prototype.addCards = function (cards) {
         this.cards = this.cards.concat(cards);
+        console.log("this.cards in hand function:", this.cards);
     };
     ///prototype function to remove card from Hand
     Hand.prototype.deleteCards = function (names) {
@@ -98,8 +99,8 @@ var Hand = (function () {
 
     function isStraightFlush(cards, groups) {
         ///console.log(cards[0].suit);
-        if (isFlush(groups, cards)) {
-            if (isStraight(groups, cards)) {
+        if (isStraight(groups, cards)) {
+            if (isFlush(groups, cards)) {
             }
             {
             }
