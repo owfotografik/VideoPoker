@@ -7,7 +7,7 @@ var Hand = (function () {
 
         //bring in an array of cards and loop throug
         this.cards = cards || [];
-       // this.cards.sort(cardSort);
+       this.cards.sort(cardSort);
         //console.log(this.cards);
 
     }
