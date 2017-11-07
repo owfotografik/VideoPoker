@@ -1,14 +1,13 @@
 //Immediately Invoked Function Expression or IIFE
 var Game = (function () {
-
-
+	
 	function Game() {
 
 		this.player = new Player(0);
 		document.getElementById("playerBankSpan").innerHTML = this.player.account;
 		this.deck = new Deck(true);
-		this.hand = new Hand(this.cards);
-		console.log("first place hand shows:", this.hand);
+		this.hand = new Hand();
+		//console.log("first place hand shows:", this.hand);
 		this.newHand = true;
 		this.cardImages = [];
 	}
@@ -74,12 +73,13 @@ var Game = (function () {
 			self.cardImages[2].src = "img/back.png";
 			self.cardImages[3].src = "img/back.png";
 			self.cardImages[4].src = "img/back.png";
-
+			this.hand = [];
 		})
 
 	}
 
 	Game.prototype.deal = function () {
+		//this.hand = new Hand();
 		this.playerBet = document.getElementById("playerBetInput").valueAsNumber;
 		let playerBank = document.getElementById('playerBankSpan');
 		let showHandName = document.getElementById('showHandName');
@@ -108,6 +108,8 @@ var Game = (function () {
 			//console to see the contents of the current cards dealt that make up the new hand.
 			//this should be the cards taken from the deck
 			var cards = this.deck.deal(5);
+			//this.hand.addCards(cards);
+			this.hand = new Hand(cards);
 			console.log("first new deal:", cards);
 			//the show card on table function takes the cards in the array and assigns an image
 			//to a place in the array of cards
@@ -126,7 +128,7 @@ var Game = (function () {
 			//hides the deal button
 			dealButton.classList.add("hidden");
 			//console.log(this.newHand);
-			console.log("deck after first run through the deal:", this.deck);
+			//console.log("deck after first run through the deal:", this.deck);
 		}
 		//second part of if / else conditions is if this is not a new hand
 
@@ -136,6 +138,7 @@ var Game = (function () {
 			//console.log(removeCards);
 			var newCards = this.deck.deal(removeCards.length);
 			var removeCardNames = [];
+			
 			//runs through the array of removeCards variable set above. These will be cards that don't have 
 			//the hold class assigned to them
 			for (var i = 0; i < removeCards.length; i++) {
@@ -149,6 +152,7 @@ var Game = (function () {
 			//add new cards to the hand instance
 			this.hand.addCards(newCards);
 			console.log("new cards:", newCards);
+			console.log("total hand after add new cards:", this.hand)
 			//console.log(this.hand);
 			//run the get best hand function
 			var bestHand = this.hand.getBestHand();
@@ -172,11 +176,11 @@ var Game = (function () {
 			playerBetInputField.value = "0";
 			//console.log(playerBetInputField);
 			this.newHand = true;
-			console.log("self.deck: ", this.deck);
+			//console.log("self.deck: ", this.deck);
 			//this.hand = [];
 			//console.log("self.hand: ", this.hand);
 			this.deck = new Deck(true);
-			console.log("self.deck: ", this.deck);
+			//console.log("self.deck: ", this.deck);
 
 		}
 	}

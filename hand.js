@@ -7,18 +7,16 @@ var Hand = (function () {
 
         //bring in an array of cards and loop throug
         this.cards = cards || [];
-        this.cards.sort(cardSort);
+       // this.cards.sort(cardSort);
         //console.log(this.cards);
 
     }
     //prototype function to add cards to the hand
     Hand.prototype.addCards = function (cards) {
         this.cards = this.cards.concat(cards);
-        console.log("this.cards in hand function:", this.cards);
     };
     ///prototype function to remove card from Hand
     Hand.prototype.deleteCards = function (names) {
-
         this.cards = this.cards.filter(function (item) {
             return !names.includes(item.name);
         });
